@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +15,12 @@
     </head>
     <body>
         <h1>Welcome to Teacher Home Page</h1>
-        
+        <p>
+            User: <sec:authentication property="principal.username"/>
+            <br/>
+            Role(s):<sec:authentication property="principal.authorities"/>
+        </p>
+        <hr/>
         <p>
             You are the teacher. You can manage your courses and students....
         </p>
