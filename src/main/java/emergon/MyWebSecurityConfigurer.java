@@ -1,6 +1,9 @@
 package emergon;
 
-import org.springframework.http.HttpMethod;
+import emergon.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,14 +12,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter{
 
+    @Autowired
+    UserService userService;
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password("{noop}1234").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}1234").roles("USER", "ADMIN")
-                .and()
-                .withUser("teacher").password("{noop}1234").roles("TEACHER");
+        auth.authenticationProvider(authenticationProvider());
+//        auth.inMemoryAuthentication()
+//                .withUser("user").password("{noop}1234").roles("USER")
+//                .and()
+//                .withUser("admin").password("{noop}1234").roles("USER", "ADMIN")
+//                .and()
+//                .withUser("teacher").password("{noop}1234").roles("TEACHER");
     }
 
     @Override
@@ -37,6 +44,13 @@ public class MyWebSecurityConfigurer extends WebSecurityConfigurerAdapter{
                 
                 .and().exceptionHandling().accessDeniedPage("/access-denied")
                 ;
+    }
+    
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userService);
+        return provider;
     }
     
     
