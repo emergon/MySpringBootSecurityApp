@@ -13,15 +13,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Welcome to Spring Security</h1>
+        <h1>Welcome to Administrator Home Page</h1>
         
-        <div>
-            <a href="/admin">Administrator Home Page</a>
-        </div>
-        <br/>
-        <div>
-            <a href="/teacher">Teacher Home Page</a>
-        </div>
+        <p>
+            You are administrator. You can do anything you want....
+        </p>
+        
         <br/>
         <form:form action="/logout" method="POST">
             <input type="submit" value="Logout">

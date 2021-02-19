@@ -13,19 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Welcome to Spring Security</h1>
+        <h1>No access baby. Welcome to Spring Security!!!</h1>
         
-        <div>
-            <a href="/admin">Administrator Home Page</a>
-        </div>
-        <br/>
-        <div>
-            <a href="/teacher">Teacher Home Page</a>
-        </div>
-        <br/>
-        <form:form action="/logout" method="POST">
-            <input type="submit" value="Logout">
-        </form:form>
     </body>
     
     
