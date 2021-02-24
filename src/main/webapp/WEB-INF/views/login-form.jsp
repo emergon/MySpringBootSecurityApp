@@ -26,6 +26,11 @@
                         <i>Invalid credentials</i>
                     </div>
                 </c:if>
+                <c:if test="${requestScope.registered != null}">
+                    <div class="registered">
+                        <i>Successfully registered. Try to sign in!!!</i>
+                    </div>
+                </c:if>
                 <!-- Icon -->
                 <div class="fadeIn first">
                     <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />

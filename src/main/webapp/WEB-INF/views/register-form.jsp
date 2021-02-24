@@ -54,6 +54,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                         <form:input class="form-control" path="username" id="username"  placeholder="Enter your Username"/>
+                                        <form:errors class="form-control" path="username"  />
                                 </div>
                             </div>
                         </div>

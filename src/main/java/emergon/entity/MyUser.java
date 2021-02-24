@@ -6,6 +6,7 @@
 package emergon.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -23,7 +24,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.springframework.security.core.userdetails.User;
 
 /**
  *
@@ -143,6 +143,13 @@ public class MyUser implements Serializable {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+    
+    public void addRole(Role role){
+        if(roles == null){
+            roles = new ArrayList();
+        }
+        roles.add(role);
+    }
 
     @Override
     public int hashCode() {
@@ -166,7 +173,9 @@ public class MyUser implements Serializable {
 
     @Override
     public String toString() {
-        return "emergon.entity.MyUser[ uid=" + uid + " ]";
+        return "MyUser{" + "uid=" + uid + ", username=" + username + ", password=" + password + ", fname=" + fname + ", lname=" + lname + ", email=" + email + '}';
     }
+
+    
     
 }

@@ -7,6 +7,7 @@ package emergon.service;
 
 import emergon.entity.MyUser;
 import emergon.entity.Role;
+import emergon.repo.RoleRepo;
 import emergon.repo.UserRepo;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,8 @@ public class UserServiceImpl implements UserService {
     UserRepo userRepo;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    RoleRepo roleRepo;
     
     @Override
     public MyUser findByUsername(String username) {
@@ -57,11 +60,15 @@ public class UserServiceImpl implements UserService {
         return authorities;
     }
     
-    public void saveUser(MyUser myuser){
+    @Override
+    public MyUser saveUser(MyUser myuser){
         String plainPassword = myuser.getPassword();
         String hashedPassword = passwordEncoder.encode(plainPassword);
         myuser.setPassword(hashedPassword);
-        userRepo.save(myuser);
+        Role role = roleRepo.findByRname("ROLE_USER");
+        myuser.addRole(role);
+        myuser = userRepo.save(myuser);
+        return myuser;
     }
     
 }
