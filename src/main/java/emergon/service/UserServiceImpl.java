@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
         String plainPassword = myuser.getPassword();
         String hashedPassword = passwordEncoder.encode(plainPassword);
         myuser.setPassword(hashedPassword);
-        Role role = roleRepo.findByRname("ROLE_USER");
+        Role role = roleRepo.findByRnameContaining("USER");
         myuser.addRole(role);
         myuser = userRepo.save(myuser);
         return myuser;
